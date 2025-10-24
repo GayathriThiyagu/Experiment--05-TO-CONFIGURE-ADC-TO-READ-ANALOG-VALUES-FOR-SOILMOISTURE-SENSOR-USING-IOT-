@@ -1,7 +1,6 @@
 # EXPERIMENT-05-SOIL-MOISTURE-SENSOR-INTERFACE-TO-IOT-DEVELOPMENT-BOARD
-### Name: T. Gayathri
-### Reg. No: 212223100007
-### Dept: CSE (Cyber Security)
+# NAME: T. Gayathri
+# REG NO:212223100007
 ## Aim: 
 
 To Interface a Analog Input  (soil moisture sensor) to ARM IOT development board and write a  program to obtain  the data on the com port 
@@ -109,7 +108,6 @@ GND is the ground pin.
 
 
 ## STM 32 CUBE PROGRAM :
-
 ```
 /* USER CODE BEGIN Header */
 /**
@@ -119,13 +117,12 @@ GND is the ground pin.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -133,10 +130,12 @@ GND is the ground pin.
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stdio.h"
-#if defined(__GNUC__)
+#if defined (__GNUC__)
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #endif
 uint16_t readValue;
+
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -149,6 +148,7 @@ uint16_t readValue;
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -185,6 +185,7 @@ static void MX_USART2_UART_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -217,25 +218,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-	  HAL_ADC_Start(&hadc);
-	  	  	  HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
-	  	  readValue = HAL_ADC_GetValue(&hadc);
-	  printf("Read value: %d\n",readValue);
-	  HAL_ADC_Stop(&hadc);
-	  uint32_t soilmoist = 100 - (readValue/40.96);
-	     printf("Soil moisture: %ld %%\n",soilmoist);
-	  HAL_Delay(1000);
-    /* USER CODE BEGIN 3 */
+	      HAL_ADC_Start(&hadc);
+	  	  HAL_ADC_PollForConversion(&hadc,HAL_MAX_DELAY);
+	  	  readValue=HAL_ADC_GetValue(&hadc);
+	  	  printf("Read value: %d\n",readValue);
+	  	  HAL_ADC_Stop(&hadc);
+	  	  uint32_t soilmoist=100 - (readValue/40.96);
+	  	  printf("soil Moisture: %ld %%\n",soilmoist);
+	  	  HAL_Delay(1000);
+
   }
   /* USER CODE END 3 */
 }
 PUTCHAR_PROTOTYPE
 {
-	HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
+	HAL_UART_Transmit(&huart2,(uint8_t *)&ch, 1, 0xFFFF);
 	return ch;
 }
-
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -248,7 +247,8 @@ void SystemClock_Config(void)
   /** Configure the main internal regulator output voltage
   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-  /** Initializes the CPU, AHB and APB busses clocks
+
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
@@ -259,6 +259,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Configure the SYSCLKSource, HCLK, PCLK1 and PCLK2 clocks dividers
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK3|RCC_CLOCKTYPE_HCLK
@@ -293,6 +294,7 @@ static void MX_ADC_Init(void)
   /* USER CODE BEGIN ADC_Init 1 */
 
   /* USER CODE END ADC_Init 1 */
+
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc.Instance = ADC;
@@ -318,6 +320,7 @@ static void MX_ADC_Init(void)
   {
     Error_Handler();
   }
+
   /** Configure Regular Channel
   */
   sConfig.Channel = ADC_CHANNEL_7;
@@ -388,10 +391,16 @@ static void MX_USART2_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -412,8 +421,7 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -429,15 +437,13 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
 ```
 
-## Output screen shots on serial monitor   :
- 
- ![WhatsApp Image 2025-10-17 at 08 48 41_37d1c575](https://github.com/user-attachments/assets/f832a35b-75b6-48b1-a86e-a27fe1200fc6)
+## Output on serial monitor   :
+ <img width="1914" height="822" alt="Screenshot 2025-10-17 095223" src="https://github.com/user-attachments/assets/c1fb296e-5efb-47eb-9c10-9443d15dc341" />
 
+
+ 
  
 ## Result :
 Interfacing a Analog Input (soil moisture sensor) with ARM microcontroller based IOT development is executed and the results visualized on serial monitor 

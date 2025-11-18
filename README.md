@@ -440,6 +440,9 @@ void assert_failed(uint8_t *file, uint32_t line)
 ```
 
 ## Output on serial monitor   :
+# Soil sensor board
+<img width="963" height="1280" alt="image" src="https://github.com/user-attachments/assets/3157c23b-a013-4484-862f-d0c117adec66" />
+# Serial Monitor
  <img width="1914" height="822" alt="Screenshot 2025-10-17 095223" src="https://github.com/user-attachments/assets/c1fb296e-5efb-47eb-9c10-9443d15dc341" />
 
 
